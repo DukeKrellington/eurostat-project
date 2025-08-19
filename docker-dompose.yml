@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  etl:
+    build: .
+    container_name: eurostat-etl
+    command: python etl/pipeline.py
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - api
+      - dashboard
+
+  api:
+    build: .
+    container_name: eurostat-api
+    command: uvicorn fastapi_app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+
+  dashboard:
+    build: .
+    container_name: eurostat-dashboard
+    command: python dashboard/app.py --host 0.0.0.0 --port 8050
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "8050:8050"
+
+volumes:
+  data:
