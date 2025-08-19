@@ -3,7 +3,7 @@ import pandas as pd
 from config.settings import DB_PATH
 
 
-def get_top_emitters(year, top_n=10):
+def get_top_emitters(year: int, top_n: int=10) -> pd.DataFrame:
     """
     Return top N emitters by total emissions for a given year.
     """
@@ -21,7 +21,7 @@ def get_top_emitters(year, top_n=10):
     return df
 
 
-def get_biggest_decreases(start_year, end_year, top_n=10):
+def get_biggest_decreases(start_year: int, end_year: int, top_n: int=10) -> pd.DataFrame:
     """
     Return top N countries with the largest percentage decrease between two years.
     """
@@ -47,7 +47,7 @@ def get_biggest_decreases(start_year, end_year, top_n=10):
     return df
 
 
-def get_worst_forecast_increases(top_n=10):
+def get_worst_forecast_increases(top_n: int=10) -> pd.DataFrame:
     """
     Return top N country-sector pairs with the largest forecasted %
     increase comparing the last historical year to the last forecast year.
@@ -72,7 +72,6 @@ def get_worst_forecast_increases(top_n=10):
         hist_year = int(hist_year)
         fore_year = int(fore_year)
 
-        # Main query: use TRIM to mitigate whitespace issues. You can add COLLATE NOCASE if needed.
         query = """
             SELECT
                 h.country_name,
@@ -97,7 +96,6 @@ def get_worst_forecast_increases(top_n=10):
 
 
 if __name__ == "__main__":
-    # Example usage
     print("Top 10 emitters in 2023:")
     print(get_top_emitters(2023))
 

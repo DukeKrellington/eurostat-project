@@ -1,3 +1,4 @@
+from typing import List
 import pandas as pd
 import sqlite3
 from config.settings import DB_PATH
@@ -9,7 +10,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="statsmodels.tsa"
 warnings.filterwarnings("ignore", category=ConvergenceWarning)
 
 
-def get_all_country_sector_combos():
+def get_all_country_sector_combos() -> List[tuple[str, str]]:
     """ Get all unique (country_name, sector_name) pairs from emissions_data table. """
     conn = sqlite3.connect(DB_PATH)
     query = """
@@ -23,7 +24,7 @@ def get_all_country_sector_combos():
     return combos
 
 
-def get_emissions_data(country_name, sector_name):
+def get_emissions_data(country_name: str, sector_name: str) -> pd.DataFrame:
     """ Retrieve emissions data from emissions_data table. """
     conn = sqlite3.connect(DB_PATH)
     query = """
@@ -38,7 +39,7 @@ def get_emissions_data(country_name, sector_name):
     return df
 
 
-def forecast_series(series, forecast_years=10, order=(2, 1, 2)):
+def forecast_series(series: pd.Series, forecast_years: int=10, order: tuple[int, int, int]=(2, 1, 2)):
     """
     Forecast a numeric time series with ARIMA.
     Returns a pandas Series of forecasts.
@@ -50,7 +51,7 @@ def forecast_series(series, forecast_years=10, order=(2, 1, 2)):
     return forecast
 
 
-def forecast_all(forecast_years=10):
+def forecast_all(forecast_years: int=10):
     """
     Forecast emissions and emissions_per_capita for all country/sector combinations.
     Returns a DataFrame with forecasts for all.
@@ -84,7 +85,7 @@ def forecast_all(forecast_years=10):
     return pd.DataFrame(results)
 
 
-def load_forecasts_to_db(forecast_df):
+def load_forecasts_to_db(forecast_df: pd.DataFrame):
     """ Load forecast results into emissions_forecast table in SQLite. """
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()

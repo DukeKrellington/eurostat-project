@@ -1,14 +1,17 @@
 import sqlite3
+
+import pandas as pd
+
 from config.settings import DB_PATH
 
 
-def create_connection(db_path=DB_PATH):
+def create_connection(db_path: str=DB_PATH) -> sqlite3.Connection:
     """ Create a database connection to a SQLite database """
-    conn = sqlite3.connect(str(db_path))
+    conn = sqlite3.connect(db_path)
     return conn
 
 
-def create_table(conn):
+def create_table(conn: sqlite3.Connection):
     """ Create the merged emissions table if it does not exist. """
     cursor = conn.cursor()
 
@@ -31,7 +34,11 @@ def create_table(conn):
     conn.commit()
 
 
-def load_transformed_data(df, conn, table_name='emissions_data', if_exists='replace'):
+def load_transformed_data(
+        df: pd.DataFrame,
+        conn: sqlite3.Connection,
+        table_name: str='emissions_data',
+        if_exists: str='replace'):
     """
     Load transformed data into SQLite table
     :param df: Transformed data frame

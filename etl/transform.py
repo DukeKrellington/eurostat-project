@@ -6,7 +6,7 @@ from etl.extract import fetch_population_data, fetch_emissions_data
 from config.settings import COUNTRY_MAP, SECTOR_MAP
 
 
-def transform_emissions_data(emissions_df, start_year=1990, end_year=2023):
+def transform_emissions_data(emissions_df: pd.DataFrame, start_year: int=1990, end_year: int=2023):
     """
     Cleans and transforms raw emissions data:
       - Filters for relevant years

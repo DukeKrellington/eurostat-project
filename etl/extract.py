@@ -3,7 +3,7 @@ import pandas as pd
 from eurostatapiclient import EurostatAPIClient
 
 
-def fetch_emissions_data(start_year=1990, end_year=2023, geo_filter=None):
+def fetch_emissions_data(start_year: int=1990, end_year: int=2023, geo_filter: list=None) -> pd.DataFrame:
     """
     Fetch GHG emissions data from Eurostat API using the 'env_air_gge' dataset.
 
@@ -34,7 +34,7 @@ def fetch_emissions_data(start_year=1990, end_year=2023, geo_filter=None):
     return df
 
 
-def fetch_population_data(start_year=1990, end_year=2023, geo_filter=None):
+def fetch_population_data(start_year: int=1990, end_year: int=2023, geo_filter: list=None) -> pd.DataFrame:
     """
     Fetch total population by country and year using EurostatAPIClient.
 

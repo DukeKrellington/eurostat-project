@@ -26,7 +26,8 @@ TEXT_FONT_SIZE = 16
 
 # Queries
 
-def query_historical(country, sector):
+
+def query_historical(country: str, sector: str) -> pd.DataFrame:
     conn = sqlite3.connect(DB_PATH)
     query = """
         SELECT year, emissions_ktco2, emissions_per_capita
@@ -39,7 +40,7 @@ def query_historical(country, sector):
     return df
 
 
-def query_forecast(country, sector):
+def query_forecast(country: str, sector: str) -> pd.DataFrame:
     conn = sqlite3.connect(DB_PATH)
     query = """
         SELECT year, forecast_emissions_ktco2, forecast_emissions_per_capita

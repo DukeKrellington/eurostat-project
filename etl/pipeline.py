@@ -4,7 +4,7 @@ from etl.load import create_connection, create_table, load_transformed_data
 from analysis.forecast import forecast_all, load_forecasts_to_db
 
 
-def run_pipeline(start_year=1990, end_year=2023):
+def run_pipeline(start_year: int=1990, end_year: int=2023):
     """
     Full ETL + Forecast pipeline:
       1. Extract emissions data
