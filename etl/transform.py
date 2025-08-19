@@ -31,7 +31,8 @@ def transform_emissions_data(emissions_df: pd.DataFrame, start_year: int=1990, e
     emissions_df = emissions_df.rename(columns={
         'geo': 'country_code',
         'src_crf': 'sector_code',
-        'values': 'emissions_ktco2'
+        'values': 'emissions_ktco2',
+        'value': 'emissions_ktco2'
     })
 
     emissions_df = emissions_df[['country_code', 'sector_code', 'year', 'emissions_ktco2']]
