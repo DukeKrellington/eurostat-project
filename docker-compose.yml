@@ -1,0 +1,31 @@
+name: eurostat_emissions
+
+services:
+  etl:
+    build: .
+    container_name: eurostat_etl
+    command: python -m etl.pipeline
+    volumes:
+      - ./data:/app/data
+
+  api:
+    build: .
+    container_name: eurostat_api
+    command: sh -c "python wait_for_db.py && uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - etl
+
+  dashboard:
+    build: .
+    container_name: eurostat_dashboard
+    command: sh -c "python wait_for_db.py && python -m dashboard.app"
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - etl
