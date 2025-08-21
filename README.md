@@ -1,6 +1,6 @@
 # Eurostat Emissions ETL, Forecasting, and Dashboard
 
-This project ingests greenhouse gas emissions data from **Eurostat**, processes and stores it in a PostgreSQL database, applies time-series forecasting models, and exposes the results via both a **FastAPI backend** and an interactive **Dash dashboard**.
+This project ingests greenhouse gas emissions data from **Eurostat**, processes and stores it in an SQLite database, applies time-series forecasting models, and exposes the results via both a **FastAPI backend** and an interactive **Dash dashboard**.
 
 The system is fully containerized with **Docker Compose**.
 
