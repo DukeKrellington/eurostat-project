@@ -1,5 +1,4 @@
 import sqlite3
-import pandas as pd
 import analysis.trends as trends
 
 def setup_temp_db(tmp_path):

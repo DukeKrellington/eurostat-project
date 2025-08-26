@@ -1,6 +1,5 @@
 import pandas as pd
 from etl import load
-from pathlib import Path
 
 def test_load_transformed_data(tmp_path):
     # Create a temp sqlite db path

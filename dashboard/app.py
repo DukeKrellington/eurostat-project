@@ -1,11 +1,6 @@
 import sys
 from pathlib import Path
 
-# Add the project root to sys.path for imports
-PROJECT_ROOT = Path(__file__).parent.parent.resolve()
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
 from config.settings import DB_PATH
 
 import dash
@@ -14,7 +9,12 @@ import pandas as pd
 import sqlite3
 import plotly.graph_objs as go
 
-# Initialize Dash app with a consistent font
+# Add the project root to sys.path for imports
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+# Initialize Dash app
 app = dash.Dash(__name__)
 server = app.server  # for deployment
 

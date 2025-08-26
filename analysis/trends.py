@@ -8,7 +8,7 @@ def get_top_emitters(year: int, top_n: int=10) -> pd.DataFrame:
     Return top N emitters by total emissions for a given year.
     """
     conn = sqlite3.connect(DB_PATH)
-    query = f"""
+    query = """
         SELECT country_name, sector_name, emissions_ktco2
         FROM emissions_data
         WHERE year = ?
@@ -27,7 +27,7 @@ def get_biggest_decreases(start_year: int, end_year: int, top_n: int=10) -> pd.D
     """
     conn = sqlite3.connect(DB_PATH)
     df = pd.read_sql_query(
-        f"""
+        """
         SELECT 
             e1.country_name,
             e1.emissions_ktco2 AS start_emissions,
