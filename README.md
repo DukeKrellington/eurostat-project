@@ -1,5 +1,8 @@
 # Eurostat Emissions ETL, Forecasting, and Dashboard
 
+![CI](https://github.com/DukeKrellington/eurostat-project/actions/workflows/ci.yml/badge.svg)
+![Build](https://github.com/DukeKrellington/eurostat-project/workflows/build-and-push.yml/badge.svg)
+
 This project ingests greenhouse gas emissions data from **Eurostat**, processes and stores it in an SQLite database, applies time-series forecasting models, and exposes the results via both a **FastAPI backend** and an interactive **Dash dashboard**.
 
 The system is fully containerized with **Docker Compose**.
