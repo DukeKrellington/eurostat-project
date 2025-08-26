@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/eurostat-project
+  IMAGE_NAME: ghcr.io/dukekrellington/eurostat-project
 
 jobs:
   build-and-push:
